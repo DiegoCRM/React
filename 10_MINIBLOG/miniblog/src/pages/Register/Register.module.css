@@ -1,5 +1,7 @@
 .register {
     text-align: center;
+    color: #2158FF;
+    text-transform: capitalize;
 }
 
 .register p {

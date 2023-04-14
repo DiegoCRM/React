@@ -1,5 +1,7 @@
 .edit_post {
     text-align: center;
+    color: #2158FF;
+    text-transform: capitalize;
 }
 
 .edit_post h2 {
@@ -13,7 +15,7 @@
 
 .edit_post .preview_title {
     margin-bottom: .2em;
-    color: #000;
+    color: #2158FF;
     font-weight: bold;
 }
 

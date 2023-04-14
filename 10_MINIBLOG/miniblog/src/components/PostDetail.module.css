@@ -1,13 +1,17 @@
 .post_detail {
     margin-bottom: 2em;
+    color: #2158ff;
 }
 
 .post_detail img {
-    max-width: 600px;
+    max-width: 500px;
+    border-radius: 20px;
 }
 
 .post_detail h2 {
     margin-bottom: 0.4em;
+    text-transform: capitalize;
+    
 }
 
 .post_detail .tags {
@@ -28,4 +32,5 @@
     color        : #444;
     font-size    : 0.8em;
     margin-bottom: 1em;
+    text-transform: capitalize;
 }

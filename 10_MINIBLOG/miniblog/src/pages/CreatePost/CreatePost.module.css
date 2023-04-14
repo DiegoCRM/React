@@ -1,5 +1,7 @@
 .create_post {
     text-align: center;
+    color: #2158FF;
+    text-transform: capitalize;
 }
 
 .create_post h2 {

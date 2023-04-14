@@ -1,5 +1,7 @@
 .post_container {
     text-align: center;
+    color: #2158FF;
+    text-transform: capitalize;
 }
 
 .post_container h3 {

@@ -4,6 +4,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #2158FF;
+    text-transform: capitalize;
 }
 
 .dashoboard h2 {
@@ -34,6 +36,7 @@
     font-weight: bold;
     width: 80%;
     padding: 10px;
+    color: #2158FF;
 }
 
 .post_header {
