@@ -1,8 +1,8 @@
-import styles from "./Footer.css"
+import "./Footer.css"
 
 const Footer = () => {
   return <footer>
-    <p>ReactGram &coy; 2023</p>
+    <p>ReactGram &copy; 2023</p>
   </footer>
 }
 

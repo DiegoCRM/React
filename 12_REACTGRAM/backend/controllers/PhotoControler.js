@@ -4,13 +4,17 @@ const User = require("../models/User")
 const mongoose = require("mongoose")
 
 // Insert a photo, with an user related to it
-const insertPhoto = async(req, res) => {
-  const {title} = req.body;
+const insertPhoto = async (req, res) => {
+  const { title } = req.body;
   const image = req.file.filename;
 
-  const reqUser = req.user
+  console.log(req.body);
+
+  const reqUser = req.user;
 
   const user = await User.findById(reqUser._id);
+
+  console.log(user.name);
 
   //Create a photo
   const newPhoto = await Photo.create({
@@ -29,7 +33,7 @@ const insertPhoto = async(req, res) => {
   }
   res.status(201).json(newPhoto)
 
-  res.send("Photo insert");
+ /*  res.send("Photo insert"); */
 };
 
 // Remove a photo from DB
@@ -37,14 +41,7 @@ const deletePhoto = async (req, res) => {
   const { id } = req.params;
   const reqUser = req.user;
 
-  let photo;
-
-  try {
-    photo = await Photo.findById(id);
-  } catch (error) {
-    res.status(500).json({ errors: ["Ocorreu um erro, por favor tente novamente mais tarde"] });
-    return;
-  }
+  const photo = await Photo.findById(new mongoose.Types.ObjectId(id));
 
   // Check if Photo exists
   if (!photo) {
@@ -54,16 +51,18 @@ const deletePhoto = async (req, res) => {
 
   // Check if photo belongs to user
   if (!photo.userId.equals(reqUser._id)) {
-    res.status(422).json({ errors: ["Você não tem permissão para excluir esta foto."] });
+    res
+      .status(422)
+      .json({ errors: ["Você não tem permissão para excluir esta foto."] });
     return;
   }
 
-  try {
-    await Photo.findByIdAndDelete(photo._id);
-    res.status(200).json({ id: photo._id, message: "Foto excluída com sucesso." });
-  } catch (error) {
-    res.status(500).json({ errors: ["Ocorreu um erro, por favor tente novamente mais tarde"] });
-  }
+
+  await Photo.findByIdAndDelete(photo._id);
+
+  res
+    .status(200)
+    .json({ id: photo._id, message: "Foto excluída com sucesso." });
 };
 
 //Get all photos

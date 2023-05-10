@@ -55,8 +55,9 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            <NavLink to ="/profile"/>
-            <BsFillPersonFill/>
+            <NavLink to ="/profile">
+              <BsFillPersonFill/>
+            </NavLink>
           </li>
           <li>
             <span onClick={handleLogout} >Sair</span>

@@ -70,6 +70,8 @@ const login = async (req, res) => {
     return
   }
 
+
+
   //return user with token
   res.status(201).json({
     _id: user._id,
@@ -87,6 +89,10 @@ const getCurrentUser = async(req, res) => {
 };
 
 // Update an user
+/* const update = async (req, res) => {
+  res.send("Update")
+} */
+
 const update = async (req, res) => {
   const {name, password, bio} = req.body
 
@@ -99,9 +105,7 @@ const update = async (req, res) => {
   const reqUser = req.user
 
   const user = await User.findById(new mongoose.Types.ObjectId(reqUser._id)).select("-password");
-  /* const user = await User.findById(reqUser._id).select('-password') */
-
-
+ // const user = await User.findById(reqUser._id).select('-password')
 
   if(name){
     user.name = name
@@ -122,7 +126,7 @@ const update = async (req, res) => {
   }
 
   await user.save()
-  res.status(200)
+  res.status(200).json(user)
 };
 
 // get user by id
