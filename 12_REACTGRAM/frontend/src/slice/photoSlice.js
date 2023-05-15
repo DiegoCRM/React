@@ -41,7 +41,9 @@ export const getUserPhotos = createAsyncThunk(
 );
 
 // Get photo
-export const getPhoto = createAsyncThunk("photo/getphoto", async (id, token) => {
+export const getPhoto = createAsyncThunk("photo/getphoto", async (id, thunkAPI) => {
+  const token = thunkAPI.getState().auth.user.token;
+
   const data = await photoService.getPhoto(id, token);
 
   return data;
@@ -103,12 +105,12 @@ export const like = createAsyncThunk("photo/like", async (id, thunkAPI) => {
 // Add comment to a photo
 export const comment = createAsyncThunk(
   "photo/comment",
-  async (photoData, thunkAPI) => {
+  async (commentData, thunkAPI) => {
     const token = thunkAPI.getState().auth.user.token;
 
     const data = await photoService.comment(
-      { comment: photoData.comment },
-      photoData.id,
+      { comment: commentData.comment },
+      commentData.id,
       token
     );
 
@@ -122,8 +124,11 @@ export const comment = createAsyncThunk(
 );
 
 // Get all photos
-export const getPhotos = createAsyncThunk("photo/getall", async () => {
-  const data = await photoService.getPhotos();
+export const getPhotos = createAsyncThunk("photo/getall", async (_, thunkAPI) => {
+
+  const token = thunkAPI.getState().auth.user.token;
+
+   const data = await photoService.getPhotos(token);
 
   return data;
 });
@@ -182,7 +187,7 @@ export const photoSlice = createSlice({
       })
       .addCase(getPhoto.pending, (state) => {
         state.loading = true;
-        state.error = false;
+        state.error = null;
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
         console.log(action.payload);

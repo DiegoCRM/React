@@ -89,10 +89,6 @@ const getCurrentUser = async(req, res) => {
 };
 
 // Update an user
-/* const update = async (req, res) => {
-  res.send("Update")
-} */
-
 const update = async (req, res) => {
   const {name, password, bio} = req.body
 
