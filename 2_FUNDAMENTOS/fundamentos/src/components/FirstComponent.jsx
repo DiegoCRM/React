@@ -1,8 +1,13 @@
+import MyComponent from "./MyComponent";
 
 const FirstComponent = () => {
-  return <div>
+  return (
+  <div>
     <h1>Meu primeiro componente</h1>
-  </div>;
+    <p className="teste">Meu texto</p>
+    <MyComponent/>
+  </div>
+  )
 };
 
 export default FirstComponent;
